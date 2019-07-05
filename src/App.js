@@ -8,8 +8,10 @@ export class App extends Component {
     message: ''
   }
 
+  url = 'https://gentle-brook-30095.herokuapp.com'
+  
   // connect to server EventStream
-  source = new EventSource('http://localhost:5000/stream')
+  source = new EventSource(`${this.url}/stream`)
 
   // connect the source to the handler 
   componentDidMount() {
@@ -26,7 +28,7 @@ export class App extends Component {
     console.log('submit')
     this.setState({ message: '' })
     request
-      .post('http://localhost:5000/message')
+      .post(`${this.url}/message`)
       .send({ message: this.state.message })
       .then(res => {
         console.log('response test:', res)

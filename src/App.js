@@ -8,7 +8,8 @@ export class App extends Component {
     message: ''
   }
 
-  url = 'https://gentle-brook-30095.herokuapp.com'
+  // url = 'https://gentle-brook-30095.herokuapp.com'
+  url = 'http://localhost:5000'
   
   // connect to server EventStream
   source = new EventSource(`${this.url}/stream`)
@@ -25,7 +26,6 @@ export class App extends Component {
 
   onSubmit = (event) => {
     event.preventDefault()
-    console.log('submit')
     this.setState({ message: '' })
     request
       .post(`${this.url}/message`)
@@ -43,7 +43,7 @@ export class App extends Component {
       .map((message, index) => <p
         key={index}
       >
-        {message}
+        {message.message}
       </p>)
 
     return <main>
